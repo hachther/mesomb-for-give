@@ -1,0 +1,130 @@
+.kt-option {
+    display: flex;
+    padding: 1em !important;
+    border: 1px solid #ebedf2;
+    border-radius: 4px;
+}
+
+.kt-option .kt-option__control {
+    width: auto;
+}
+
+.kt-option .kt-option__control .kt-radio {
+    display: block;
+}
+
+.kt-option .kt-option__label {
+    width: 100%;
+}
+
+.kt-option .kt-option__label .kt-option__head {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.kt-option .kt-option__label .kt-option__head .kt-option__title {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #595d6e;
+    width: 100%;
+    margin-left: 5px;
+}
+
+.kt-option .kt-option__label .kt-option__head .kt-option__focus {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #48465b;
+}
+
+.kt-option .kt-option__label .kt-option__body {
+    display: block;
+    font-size: 0.9rem;
+    color: #74788d;
+}
+
+.kt-option.kt-option--plain {
+    border: 0;
+    padding: 0;
+    margin-top: -0.2rem;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+.kt-option.kt-option--plain .kt-option__control {
+    vertical-align: middle;
+    width: 2.7rem;
+}
+
+.kt-option.kt-option--plain .kt-option__control .kt-radio {
+    margin-bottom: 1.6rem;
+}
+
+.kt-option.kt-option--plain .kt-option__label .kt-option__body {
+    padding-top: 0.2rem;
+}
+
+.is-valid .kt-option {
+    border-color: #1dc9b7;
+}
+
+.is-invalid .kt-option {
+    border-color: #fd27eb;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert {
+    position: relative;
+    padding: .5rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.field-label {
+    font-weight: 700 !important;
+}
+
+@media all and (max-width: 440px) {
+    .provider-row {
+        width: 100%;
+    }
+}
+
+@media all and (min-width: 441px) {
+    .provider-row {
+        width: 47%;
+        margin-right: 2%;
+    }
+}
+
+fieldset.wc-mesomb-form {
+    border-radius: 10px;
+}
+
+.givewp-fields-gateways__gateway__fields .form-row {
+    padding: 0 !important;
+}
+
+.givewp-fields-gateways__gateway__fields .form-row .form-label {
+    padding: 0 !important;
+    padding-bottom: 5px !important;
+    padding-top: 5px !important;
+}
+
+.givewp-fields-gateways__gateway__fields .form-row .input-text {
+    /*background-color: #f5f7f9 !important;*/
+    border: 1px solid #ebedf2 !important;
+    border-radius: 2px;
+}
+
+.kt-option .kt-option__control .kt-radio input[type="radio"] {
+    position: relative !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}

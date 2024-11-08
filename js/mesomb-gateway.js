@@ -9,9 +9,9 @@ const {__, _x, _n, _nx} = wp.i18n;
 
 (() => {
     const placholders = {
-        MTN: __('Mobile Money Number', 'mesomb-for-woocommerce'),
-        ORANGE: __('Orange Money Number', 'mesomb-for-woocommerce'),
-        AIRTEL: __('Airtel Money Number', 'mesomb-for-woocommerce'),
+        MTN: __('Mobile Money Number', 'mesomb-for-give'),
+        ORANGE: __('Orange Money Number', 'mesomb-for-give'),
+        AIRTEL: __('Airtel Money Number', 'mesomb-for-give'),
     };
     /**
      * MeSomb of a gateway api.
@@ -159,7 +159,7 @@ const {__, _x, _n, _nx} = wp.i18n;
                                         {
                                             class: "kt-option__body",
                                         },
-                                        `${__('Pay with your', 'mesomb-for-woocommerce')} ${provider.name}`,
+                                        `${__('Pay with your', 'mesomb-for-give')} ${provider.name}`,
                                     ),
                                 ),
                             ),
@@ -198,9 +198,9 @@ const {__, _x, _n, _nx} = wp.i18n;
                     {
                         class: 'alert-heading'
                     },
-                    __('Check your phone', 'mesomb-for-woocommerce')
+                    __('Check your phone', 'mesomb-for-give')
                 ),
-                window.wp.element.createElement("p", {},__('Please check your phone to validate payment from Hachther SARL or MeSomb', 'mesomb-for-woocommerce'))
+                window.wp.element.createElement("p", {},__('Please check your phone to validate payment from Hachther SARL or MeSomb', 'mesomb-for-give'))
             ),
         ];
     }

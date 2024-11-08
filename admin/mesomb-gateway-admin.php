@@ -5,9 +5,9 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-//use HitPay\Client;
-//use HitPay\Request\CreatePayment;
-//use HitPay\Response\PaymentStatus;
+//use MeSomb\Client;
+//use MeSomb\Request\CreatePayment;
+//use MeSomb\Response\PaymentStatus;
 
 /**
  * Proceed only, if class MeSomb_Gateway_Admin_Settings not exists.
@@ -48,7 +48,7 @@ if (! class_exists('MeSomb_Gateway_Admin_Settings')) {
                 ?>
                 <div id="major-publishing-actions">
                     <div id="publishing-action">
-                        <input type="submit" name="mesomb_payment_refund_submit" class="button button-primary right" value="<?php esc_attr_e( 'Refund via HitPay Payment Gateway', 'mesomb-givewp' ); ?>"/>
+                        <input type="submit" name="mesomb_payment_refund_submit" class="button button-primary right" value="<?php esc_attr_e( 'Refund via MeSomb Payment Gateway', 'mesomb-for-give' ); ?>"/>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -62,11 +62,11 @@ if (! class_exists('MeSomb_Gateway_Admin_Settings')) {
             if (give_get_payment_gateway($donationId) == 'mesomb') {
 
                 $payment_method = '';
-                $payment_request_id = give_get_payment_meta($donationId, 'HitPay_payment_request_id', true );
+                $payment_request_id = give_get_payment_meta($donationId, 'MeSomb_payment_request_id', true );
 
                 if (!empty($payment_request_id)) {
-                    $payment_method = give_get_payment_meta($donationId, 'HitPay_payment_method', true );
-                    $fees = give_get_payment_meta($donationId, 'HitPay_fees', true );
+                    $payment_method = give_get_payment_meta($donationId, 'MeSomb_payment_method', true );
+                    $fees = give_get_payment_meta($donationId, 'MeSomb_fees', true );
                     if (empty($payment_method) || empty($fees)) {
 
                         $give_settings = give_get_settings();
@@ -84,8 +84,8 @@ if (! class_exists('MeSomb_Gateway_Admin_Settings')) {
                                     $payment = $payments[0];
                                     $payment_method = $payment->payment_type;
                                     $fees = $payment->fees;
-                                    give_update_payment_meta($donationId, 'HitPay_payment_method', $payment_method);
-                                    give_update_payment_meta($donationId, 'HitPay_fees', $fees);
+                                    give_update_payment_meta($donationId, 'MeSomb_payment_method', $payment_method);
+                                    give_update_payment_meta($donationId, 'MeSomb_fees', $fees);
                                 }
                             }
                         } catch (\Exception $e) {
@@ -95,24 +95,24 @@ if (! class_exists('MeSomb_Gateway_Admin_Settings')) {
                 }
 
                 if (!empty($payment_method)) {
-                    $HitPay_currency = give_update_payment_meta($donationId, 'HitPay_currency', true );
+                    $MeSomb_currency = give_update_payment_meta($donationId, 'MeSomb_currency', true );
                     ?>
                     <table class="wc-order-totals" style="margin:12px; padding:12px">
                         <tbody>
                         <tr>
-                            <td class="label"><?php echo __('HitPay Payment Type', 'mesomb-givewp') ?>:</td>
+                            <td class="label"><?php echo esc_html__('MeSomb Payment Type', 'mesomb-for-give') ?>:</td>
                             <td width="1%"></td>
                             <td class="total">
-                                <span class="woocommerce-Price-amount amount"><bdi><?php echo ucwords(str_replace("_", " ", $payment_method)) ?></bdi></span>
+                                <span class="woocommerce-Price-amount amount"><bdi><?php echo esc_html(ucwords(str_replace("_", " ", $payment_method))) ?></bdi></span>
                             </td>
                         </tr>
                         <tr>
-                            <td class="label"><?php echo __('HitPay Fee', 'mesomb-givewp') ?>:</td>
+                            <td class="label"><?php echo esc_html__('MeSomb Fee', 'mesomb-for-give') ?>:</td>
                             <td width="1%"></td>
                             <td class="total">
 									<span class="woocommerce-Price-amount amount">
 										<bdi>
-										<?php echo give_currency_filter($fees, $HitPay_currency); ?>
+										<?php echo esc_html(give_currency_filter($fees, $MeSomb_currency)); ?>
 										</bdi>
 									</span>
                             </td>
@@ -132,10 +132,10 @@ if (! class_exists('MeSomb_Gateway_Admin_Settings')) {
                 $amountValue = number_format($amount, 2, '.', '');
 
                 try {
-                    $HitPay_transaction_id = give_get_payment_meta($donationId, 'HitPay_transaction_id', true );
-                    $HitPay_is_refunded = give_get_payment_meta($donationId, 'HitPay_is_refunded', true );
-                    if ($HitPay_is_refunded == 1) {
-                        throw new Exception(__('Only one refund allowed per transaction by HitPay Payment Gateway.',  'mesomb-givewp'));
+                    $MeSomb_transaction_id = give_get_payment_meta($donationId, 'MeSomb_transaction_id', true );
+                    $MeSomb_is_refunded = give_get_payment_meta($donationId, 'MeSomb_is_refunded', true );
+                    if ($MeSomb_is_refunded == 1) {
+                        throw new Exception(__('Only one refund allowed per transaction by MeSomb Payment Gateway.',  'mesomb-for-give'));
                     }
 
                     $give_settings = give_get_settings();
@@ -145,16 +145,15 @@ if (! class_exists('MeSomb_Gateway_Admin_Settings')) {
                         $this->getMode($give_settings['mesomb_mode'])
                     );
 
-                    $result = $mesombClient->refund($HitPay_transaction_id, $amountValue);
+                    $result = $mesombClient->refund($MeSomb_transaction_id, $amountValue);
 
-                    give_update_payment_meta($donationId, 'HitPay_is_refunded', 1);
-                    give_update_payment_meta($donationId, 'HitPay_refund_id', $result->getId());
-                    give_update_payment_meta($donationId, 'HitPay_refund_amount_refunded', $result->getAmountRefunded());
-                    give_update_payment_meta($donationId, 'HitPay_refund_created_at', $result->getCreatedAt());
+                    give_update_payment_meta($donationId, 'MeSomb_is_refunded', 1);
+                    give_update_payment_meta($donationId, 'MeSomb_refund_id', $result->getId());
+                    give_update_payment_meta($donationId, 'MeSomb_refund_amount_refunded', $result->getAmountRefunded());
+                    give_update_payment_meta($donationId, 'MeSomb_refund_created_at', $result->getCreatedAt());
 
-                    $message = __('Refund successful. Refund Reference Id: '.$result->getId().', '
-                        . 'Payment Id: '.$HitPay_transaction_id.', Amount Refunded: '.$result->getAmountRefunded().', '
-                        . 'Payment Method: '.$result->getPaymentMethod().', Created At: '.$result->getCreatedAt(), 'mesomb-givewp');
+                    /* translators:  */
+                    $message = sprintf(esc_html__('Refund successful. Refund Reference Id: %1$s, Payment Id: %2$s, Amount Refunded: %3$s, Payment Method: %4$s, Created At: %5$s', 'mesomb-for-give'), $result->getId(), $MeSomb_transaction_id, $result->getAmountRefunded(), $result->getPaymentMethod(), $result->getCreatedAt());
 
                     $totalRefunded = $result->getAmountRefunded();
                     if ($totalRefunded) {
@@ -168,8 +167,8 @@ if (! class_exists('MeSomb_Gateway_Admin_Settings')) {
                     $link = admin_url( 'edit.php?post_type=give_forms&page=give-payment-history&view=view-payment-details&give-messages[]=payment-updated&id=' . $donationId );
                     $message .= '<a href="'.$link.'">Go to Donation Payment Page</a>';
                     wp_die(
-                        $message,
-                        esc_html__( 'Error', 'mesomb-givewp' ),
+                        esc_html($message),
+                        esc_html__( 'Error', 'mesomb-for-give' ),
                         [
                             'response' => 400,
                         ]
@@ -189,10 +188,10 @@ if (! class_exists('MeSomb_Gateway_Admin_Settings')) {
             ?>
             <tr valign="top">
                 <th scope="row" class="titledesc">
-                    <label for="<?php echo esc_attr($field['id']); ?>"><?php echo $field['title']; ?></label>
+                    <label for="<?php echo esc_attr($field['id']); ?>"><?php echo esc_html($field['title']); ?></label>
                 </th>
-                <td class="give-forminp give-forminp-<?php echo sanitize_title($field['type']) ?>">
-                    <span style="<?php echo isset($field['style']) ? $field['style'] :''; ?> font-weight: 700;"><?php echo $field['default']; ?></span>
+                <td class="give-forminp give-forminp-<?php echo esc_html(sanitize_title($field['type'])) ?>">
+                    <span style="<?php echo isset($field['style']) ? $field['style'] :''; ?> font-weight: 700;"><?php echo esc_html($field['default']); ?></span>
                 </td>
             </tr>
             <?php
@@ -214,8 +213,8 @@ if (! class_exists('MeSomb_Gateway_Admin_Settings')) {
             ?>
             <tr valign="top">
                 <th scope="row" style="padding: 0px">
-                    <div class="give-setting-tab-header give-setting-tab-header-<?php echo $current_tab; ?>">
-                        <h2><?php echo $field['title']; ?></h2>
+                    <div class="give-setting-tab-header give-setting-tab-header-<?php echo esc_html($current_tab); ?>">
+                        <h2><?php echo esc_html($field['title']); ?></h2>
                         <hr>
                     </div>
                 </th>
@@ -242,11 +241,11 @@ if (! class_exists('MeSomb_Gateway_Admin_Settings')) {
                         ),
 //                        array(
 //                            'id'      => 'mesomb_mode',
-//                            'name'    => __( 'Live Mode', 'mesomb-give' ),
+//                            'name'    => __( 'Live Mode', 'mesomb-for-give' ),
 //                            'type'    => 'radio_inline',
 //                            'options' => array(
-//                                'yes' => __( 'Live', 'mesomb-give' ),
-//                                'no' => __( 'Sandbox', 'mesomb-give' )
+//                                'yes' => __( 'Live', 'mesomb-for-give' ),
+//                                'no' => __( 'Sandbox', 'mesomb-for-give' )
 //                            ),
 //                            'default' => 'no',
 //                        ),
@@ -260,14 +259,14 @@ if (! class_exists('MeSomb_Gateway_Admin_Settings')) {
                         array(
                             'id'      => 'mesomb_access_key',
                             'type'    => 'text',
-                            'name'    => __('MeSomb Access Key', 'mesomb-give'),
+                            'name'    => __('MeSomb Access Key', 'mesomb-for-give'),
                             'desc'    => __('Copy/Paste values from MeSomb Dashboard under Applications -> Your Application > Integration', 'mesomb-for-give'),
                             'default' => ''
                         ),
                         array(
                             'id'      => 'mesomb_secret_key',
                             'type'    => 'text',
-                            'name'    => __('MeSomb Secret Key', 'mesomb-give'),
+                            'name'    => __('MeSomb Secret Key', 'mesomb-for-give'),
                             'desc'    => __('Copy/Paste values from MeSomb Dashboard under Applications -> Your Application > Integration', 'mesomb-for-give'),
                             'default' => ''
                         ),

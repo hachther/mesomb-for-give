@@ -1,5 +1,5 @@
 # Copyright (C) 2024 Hachther LLC <contact@hachther.com>
-# This file is distributed under the same license as the MeSomb for Give plugin.
+# This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
 "Project-Id-Version: MeSomb for Give 1.0.0\n"
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-08T01:09:39+00:00\n"
+"POT-Creation-Date: 2024-11-08T09:26:22+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: mesomb-for-give\n"
@@ -19,73 +19,152 @@ msgstr ""
 #: includes/mesomb-gateway.php:137
 #: includes/mesomb-gateway.php:145
 msgid "MeSomb for Give"
-msgstr "MeSomb for Give"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: mesomb-gateway-givewp.php
+msgid "https://mesomb.hachther.com"
+msgstr ""
 
 #. Description of the plugin
 #: mesomb-gateway-givewp.php
 msgid "Plugin to integrate Mobile payment on GiveWP using Hachther MeSomb"
-msgstr "Plugin to integrate Mobile payment on GiveWP using Hachther MeSomb"
+msgstr ""
 
 #. Author of the plugin
 #: mesomb-gateway-givewp.php
 msgid "Hachther LLC <contact@hachther.com>"
-msgstr "Hachther LLC <contact@hachther.com>"
+msgstr ""
 
 #. Author URI of the plugin
 #: mesomb-gateway-givewp.php
 msgid "https://hachther.com"
-msgstr "https://hachther.com"
+msgstr ""
 
-#: admin/mesomb-gateway-admin.php:241
+#: admin/mesomb-gateway-admin.php:51
+msgid "Refund via MeSomb Payment Gateway"
+msgstr ""
+
+#: admin/mesomb-gateway-admin.php:103
+msgid "MeSomb Payment Type"
+msgstr ""
+
+#: admin/mesomb-gateway-admin.php:110
+msgid "MeSomb Fee"
+msgstr ""
+
+#: admin/mesomb-gateway-admin.php:138
+msgid "Only one refund allowed per transaction by MeSomb Payment Gateway."
+msgstr ""
+
+#. translators:
+#: admin/mesomb-gateway-admin.php:156
+msgid "Refund successful. Refund Reference Id: %1$s, Payment Id: %2$s, Amount Refunded: %3$s, Payment Method: %4$s, Created At: %5$s"
+msgstr ""
+
+#: admin/mesomb-gateway-admin.php:171
+msgid "Error"
+msgstr ""
+
+#: admin/mesomb-gateway-admin.php:240
 msgid "API Credentials"
-msgstr "API Credentials"
+msgstr ""
+
+#: admin/mesomb-gateway-admin.php:255
+msgid "MeSomb Application Key"
+msgstr ""
 
 #: admin/mesomb-gateway-admin.php:256
-msgid "MeSomb Application Key"
-msgstr "MeSomb Application Key"
-
-#: admin/mesomb-gateway-admin.php:257
-#: admin/mesomb-gateway-admin.php:264
-#: admin/mesomb-gateway-admin.php:271
+#: admin/mesomb-gateway-admin.php:263
+#: admin/mesomb-gateway-admin.php:270
 msgid "Copy/Paste values from MeSomb Dashboard under Applications -> Your Application > Integration"
-msgstr "Copy/Paste values from MeSomb Dashboard under Applications -> Your Application > Integration"
+msgstr ""
 
-#: admin/mesomb-gateway-admin.php:287
+#: admin/mesomb-gateway-admin.php:262
+msgid "MeSomb Access Key"
+msgstr ""
+
+#: admin/mesomb-gateway-admin.php:269
+msgid "MeSomb Secret Key"
+msgstr ""
+
+#: admin/mesomb-gateway-admin.php:286
 msgid "Currency Conversion"
-msgstr "Currency Conversion"
+msgstr ""
 
-#: admin/mesomb-gateway-admin.php:289
+#: admin/mesomb-gateway-admin.php:288
 msgid "Rely on MeSomb to automatically convert foreign currencies"
-msgstr "Rely on MeSomb to automatically convert foreign currencies"
+msgstr ""
+
+#: admin/mesomb-gateway-admin.php:290
+msgid "Yes"
+msgstr ""
 
 #: admin/mesomb-gateway-admin.php:291
-msgid "Yes"
-msgstr "Yes"
-
-#: admin/mesomb-gateway-admin.php:292
 msgid "No"
-msgstr "No"
+msgstr ""
 
-#: admin/mesomb-gateway-admin.php:298
+#: admin/mesomb-gateway-admin.php:297
 msgid "Countries"
-msgstr "Countries"
+msgstr ""
 
-#: admin/mesomb-gateway-admin.php:300
+#: admin/mesomb-gateway-admin.php:299
 msgid "You can receive payments from which countries"
-msgstr "You can receive payments from which countries"
+msgstr ""
+
+#: admin/mesomb-gateway-admin.php:301
+msgid "Cameroon"
+msgstr ""
 
 #: admin/mesomb-gateway-admin.php:302
-msgid "Cameroon"
-msgstr "Cameroon"
-
-#: admin/mesomb-gateway-admin.php:303
 msgid "Niger"
-msgstr "Niger"
+msgstr ""
+
+#: class-onsite-mesomb-gateway-subscription-module.php:31
+#: includes/mesomb-gateway.php:206
+msgid "MeSomb payment ID is required."
+msgstr ""
+
+#. translators: %s: reason of failure
+#: class-onsite-mesomb-gateway-subscription-module.php:49
+#: includes/mesomb-gateway.php:228
+msgid "Donation failed. Reason: %s"
+msgstr ""
+
+#: includes/mesomb-gateway.php:340
+msgid ""
+"Error during the payment process!\n"
+"Please try again and contact the admin if the issue is continue"
+msgstr ""
+
+#: js/mesomb-gateway.js:12
+msgid "Mobile Money Number"
+msgstr ""
+
+#: js/mesomb-gateway.js:13
+msgid "Orange Money Number"
+msgstr ""
+
+#: js/mesomb-gateway.js:14
+msgid "Airtel Money Number"
+msgstr ""
 
 #: js/mesomb-gateway.js:33
 msgid "Please select a service provider."
-msgstr "Please select a service provider."
+msgstr ""
 
 #: js/mesomb-gateway.js:38
 msgid "Please enter your phone number."
-msgstr "Please enter your phone number."
+msgstr ""
+
+#: js/mesomb-gateway.js:162
+msgid "Pay with your"
+msgstr ""
+
+#: js/mesomb-gateway.js:201
+msgid "Check your phone"
+msgstr ""
+
+#: js/mesomb-gateway.js:203
+msgid "Please check your phone to validate payment from Hachther SARL or MeSomb"
+msgstr ""

@@ -1,6 +1,7 @@
 <?php
 /**
  * Plugin Name: MeSomb for Give
+ * Plugin URI: https://mesomb.hachther.com
  * Description: Plugin to integrate Mobile payment on GiveWP using Hachther MeSomb
  * Version: 1.0.0
  * Requires at least: 6.0
@@ -9,6 +10,8 @@
  * Author URI: https://hachther.com
  * Text Domain: mesomb-for-give
  * Domain Path: /languages
+ * License: GPLv3
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  */
 
 // Register the gateways 

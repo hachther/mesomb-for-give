@@ -27,12 +27,12 @@ class MeSombGatewayOnsiteSubscriptionModuleClass extends SubscriptionModule
     ) {
         try {
             // Step 1: Validate any data passed from the gateway fields in $gatewayData.  Throw the PaymentGatewayException if the data is invalid.
-            if (empty($gatewayData['example-gateway-id'])) {
-                throw new PaymentGatewayException(__('MeSomb payment ID is required.', 'example-give'));
+            if (empty($gatewayData['mesomb-for-give'])) {
+                throw new PaymentGatewayException(__('MeSomb payment ID is required.', 'mesomb-for-give'));
             }
 
             // Step 2: Create a subscription with your gateway.
-            $response = MeSombGatewayApi::createSubscription(['transaction_id' => $gatewayData['example-gateway-id']]);
+            $response = MeSombGatewayApi::createSubscription(['transaction_id' => $gatewayData['mesomb-for-give']]);
 
             // Step 3: Return a command to complete the subscription. You can alternatively return SubscriptionProcessing for gateways that require a webhook or similar to confirm that the subscription is complete. SubscriptionProcessing will trigger an email notification, configurable in the settings.
             return new SubscriptionComplete($response['transaction_id'], $response['id']);
@@ -45,10 +45,11 @@ class MeSombGatewayOnsiteSubscriptionModuleClass extends SubscriptionModule
 
             DonationNote::create([
                 'donationId' => $donation->id,
-                'content' => sprintf(esc_html__('Donation failed. Reason: %s', 'example-give'), $errorMessage)
+                /* translators: %s: reason of failure */
+                'content' => sprintf(esc_html__('Donation failed. Reason: %s', 'mesomb-for-give'), $errorMessage)
             ]);
 
-            throw new PaymentGatewayException($errorMessage);
+            throw new PaymentGatewayException(esc_html($errorMessage));
         }
     }
 
@@ -70,9 +71,9 @@ class MeSombGatewayOnsiteSubscriptionModuleClass extends SubscriptionModule
             throw new PaymentGatewayException(
                 sprintf(
                     'Unable to cancel subscription. %s',
-                    $exception->getMessage()
+                    esc_html($exception->getMessage())
                 ),
-                $exception->getCode(),
+                esc_html($exception->getCode()),
                 $exception
             );
         }

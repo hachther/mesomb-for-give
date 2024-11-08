@@ -27,7 +27,7 @@ class MeSombGiveSignature
     public static function signRequest($service, $method, $url, $date, $nonce, $credentials, $headers = [], $body = null)
     {
         $algorithm = 'HMAC-SHA1';
-        $parse = parse_url($url);
+        $parse = wp_parse_url($url);
         $canonicalQuery = isset($parse['query']) ? $parse['query'] : '';
 
         $timestamp = $date->getTimestamp();
@@ -47,7 +47,7 @@ class MeSombGiveSignature
         if (!isset($body)) {
             $body = "{}";
         } else {
-            $body = json_encode($body, JSON_UNESCAPED_SLASHES);
+            $body = wp_json_encode($body, JSON_UNESCAPED_SLASHES);
         }
         $payloadHash = sha1($body);
 
@@ -76,7 +76,7 @@ class MeSombGiveSignature
         $charactersLength = strlen($characters);
         $randomString = '';
         for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
+            $randomString .= $characters[wp_rand(0, $charactersLength - 1)];
         }
         return $randomString;
     }
@@ -162,7 +162,7 @@ class MeSombGatewayOnsiteClass extends PaymentGateway
     public function enqueueScript(int $formId)
     {
         wp_enqueue_script('mesomb-gateway', plugin_dir_url(__FILE__) . '../js/mesomb-gateway.js', ['react', 'wp-element'], '1.0.0', true);
-        wp_enqueue_style( 'mesomb-gateway', plugins_url('../css/style.css', __FILE__) );
+        wp_enqueue_style( 'mesomb-gateway', plugins_url('../css/style.css', __FILE__), array(), '1.0.0', 'all' );
     }
 
     /**
@@ -203,7 +203,7 @@ class MeSombGatewayOnsiteClass extends PaymentGateway
         try {
             // Step 1: Validate any data passed from the gateway fields in $gatewayData.  Throw the PaymentGatewayException if the data is invalid.
             if (empty($gatewayData['mesomb-for-give'])) {
-                throw new PaymentGatewayException(__('MeSomb payment ID is required.', 'example-give' ) );
+                throw new PaymentGatewayException(__('MeSomb payment ID is required.', 'mesomb-for-give' ) );
             }
 
             // Step 2: Create a payment with your gateway.
@@ -224,10 +224,11 @@ class MeSombGatewayOnsiteClass extends PaymentGateway
 
             DonationNote::create([
                 'donationId' => $donation->id,
-                'content' => sprintf(esc_html__('Donation failed. Reason: %s', 'example-give'), $errorMessage)
+                /* translators: %s: reason of failure */
+                'content' => sprintf(esc_html__('Donation failed. Reason: %s', 'mesomb-for-give'), $errorMessage)
             ]);
 
-            throw new PaymentGatewayException($errorMessage);
+            throw new PaymentGatewayException(esc_html($errorMessage));
         }
     }
 
@@ -316,7 +317,7 @@ class MeSombGatewayOnsiteClass extends PaymentGateway
         $headers['Authorization'] = $authorization;
 
         $response = wp_remote_post($url, array(
-            'body' => json_encode($data),
+            'body' => wp_json_encode($data),
             'headers' => $headers
         ));
 
@@ -333,10 +334,10 @@ class MeSombGatewayOnsiteClass extends PaymentGateway
 //                    'subscription_id' => $body['subscription_id'],
                 ], $data);
             } else {
-                throw new Exception(isset($body['detail']) ? $body['detail'] : $body['message']);
+                throw new Exception(esc_html(isset($body['detail']) ? $body['detail'] : $body['message']));
             }
         } else {
-            throw new Exception(__("Error during the payment process!\nPlease try again and contact the admin if the issue is continue", 'mesomb-for-woocommerce'));
+            throw new Exception(esc_html__("Error during the payment process!\nPlease try again and contact the admin if the issue is continue", 'mesomb-for-give'));
         }
     }
 }

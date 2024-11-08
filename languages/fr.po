@@ -1,0 +1,98 @@
+# Copyright (C) 2024 Hachther LLC <contact@hachther.com>
+# This file is distributed under the same license as the MeSomb for Give plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: MeSomb for Give 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/trunk\n"
+"POT-Creation-Date: 2024-11-08T01:09:39+00:00\n"
+"PO-Revision-Date: 2024-11-07 20:16-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Domain: mesomb-for-give\n"
+
+#. Plugin Name of the plugin
+#: mesomb-gateway-givewp.php includes/mesomb-gateway.php:137
+#: includes/mesomb-gateway.php:145
+msgid "MeSomb for Give"
+msgstr "MeSomb for Give"
+
+#. Description of the plugin
+#: mesomb-gateway-givewp.php
+msgid "Plugin to integrate Mobile payment on GiveWP using Hachther MeSomb"
+msgstr ""
+"Plugin pour intégrer le paiement mobile sur GiveWP en utilisant "
+"Hachther MeSomb"
+
+#. Author of the plugin
+#: mesomb-gateway-givewp.php
+msgid "Hachther LLC <contact@hachther.com>"
+msgstr "Hachther LLC <contact@hachther.com>"
+
+#. Author URI of the plugin
+#: mesomb-gateway-givewp.php
+msgid "https://hachther.com"
+msgstr "https://hachther.com"
+
+#: admin/mesomb-gateway-admin.php:241
+msgid "API Credentials"
+msgstr "Informations d’identification de l’API"
+
+#: admin/mesomb-gateway-admin.php:256
+msgid "MeSomb Application Key"
+msgstr "Clé d’Application MeSomb"
+
+#: admin/mesomb-gateway-admin.php:257 admin/mesomb-gateway-admin.php:264
+#: admin/mesomb-gateway-admin.php:271
+msgid ""
+"Copy/Paste values from MeSomb Dashboard under Applications -> Your "
+"Application > Integration"
+msgstr ""
+"Copier/coller les valeurs du tableau de bord MeSomb sous Applications -"
+"> Votre application > Intégration"
+
+#: admin/mesomb-gateway-admin.php:287
+msgid "Currency Conversion"
+msgstr "Conversion de Devises"
+
+#: admin/mesomb-gateway-admin.php:289
+msgid "Rely on MeSomb to automatically convert foreign currencies"
+msgstr ""
+"Faites confiance à MeSomb pour convertir automatiquement les devises "
+"étrangères"
+
+#: admin/mesomb-gateway-admin.php:291
+msgid "Yes"
+msgstr "Oui"
+
+#: admin/mesomb-gateway-admin.php:292
+msgid "No"
+msgstr "No"
+
+#: admin/mesomb-gateway-admin.php:298
+msgid "Countries"
+msgstr "Pays"
+
+#: admin/mesomb-gateway-admin.php:300
+msgid "You can receive payments from which countries"
+msgstr "De quels pays pouvez-vous recevoir des paiements"
+
+#: admin/mesomb-gateway-admin.php:302
+msgid "Cameroon"
+msgstr "Cameroun"
+
+#: admin/mesomb-gateway-admin.php:303
+msgid "Niger"
+msgstr "Niger"
+
+#: js/mesomb-gateway.js:33
+msgid "Please select a service provider."
+msgstr "Veuillez sélectionner un fournisseur de services."
+
+#: js/mesomb-gateway.js:38
+msgid "Please enter your phone number."
+msgstr "Veuillez entrer votre numéro de téléphone."
